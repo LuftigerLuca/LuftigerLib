@@ -1,5 +1,6 @@
 package eu.luftiger.luftigerlib.configuration.spigot;
 
+import org.bukkit.ChatColor;
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.plugin.java.JavaPlugin;
 
@@ -10,6 +11,7 @@ import java.nio.file.CopyOption;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.ArrayList;
+import java.util.Objects;
 
 public abstract class SpigotConfiguration {
 
@@ -45,6 +47,10 @@ public abstract class SpigotConfiguration {
             }
         }
         config = YamlConfiguration.loadConfiguration(file);
+    }
+
+    public String getConverted(String path){
+        return ChatColor.translateAlternateColorCodes('&', Objects.requireNonNull(config.getString(path)));
     }
 
     public YamlConfiguration getConfig() {
