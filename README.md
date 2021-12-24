@@ -1,15 +1,14 @@
 # LuftigerLib
+```java
+<repository>
+	<id>jitpack.io</id>
+	<url>https://jitpack.io</url>
+</repository>
 ```
-	<repositories>
-		<repository>
-		    <id>jitpack.io</id>
-		    <url>https://jitpack.io</url>
-		</repository>
-	</repositories>
+```java
+<dependency>
+	<groupId>com.github.LuftigerLuca</groupId>
+	<artifactId>LuftigerLib</artifactId>
+    	<version>Version</version>
+</dependency>
 ```
-```
-	<dependency>
-	    <groupId>com.github.LuftigerLuca</groupId>
-	    <artifactId>LuftigerLib</artifactId>
-	    <version>Version</version>
-	</dependency>
