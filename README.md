@@ -1,11 +1,11 @@
 # LuftigerLib
-```java
+```maven
 <repository>
 	<id>jitpack.io</id>
 	<url>https://jitpack.io</url>
 </repository>
 ```
-```java
+```maven
 <dependency>
 	<groupId>com.github.LuftigerLuca</groupId>
 	<artifactId>LuftigerLib</artifactId>
