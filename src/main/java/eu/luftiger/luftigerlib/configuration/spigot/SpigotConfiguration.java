@@ -23,6 +23,11 @@ public abstract class SpigotConfiguration {
         this.plugin = plugin;
     }
 
+    /**
+     * Creates or loads the yml file in the plugin directory.
+     *
+     * @param name Is the name of the file
+     */
     public void createDefaults(String name) {
         if (!plugin.getDataFolder().exists()) {
             plugin.getDataFolder().mkdir();
