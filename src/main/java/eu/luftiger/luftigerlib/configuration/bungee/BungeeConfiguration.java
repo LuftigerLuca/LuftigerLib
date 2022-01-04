@@ -17,7 +17,8 @@ public abstract class BungeeConfiguration {
 
     private final Plugin plugin;
     private Configuration configuration;
-    private File file;
+    protected ConfigurationProvider configurationProvider = ConfigurationProvider.getProvider(YamlConfiguration.class);
+    protected File file;
 
     protected BungeeConfiguration(Plugin plugin) {
         this.plugin = plugin;
@@ -56,5 +57,14 @@ public abstract class BungeeConfiguration {
 
     public Configuration getConfiguration() {
         return configuration;
+    }
+
+    public void saveConfig(){
+        try {
+            configurationProvider.load(file);
+            configurationProvider.save(configuration, file);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }
