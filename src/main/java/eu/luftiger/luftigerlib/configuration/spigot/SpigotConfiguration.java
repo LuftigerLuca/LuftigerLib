@@ -62,6 +62,10 @@ public abstract class SpigotConfiguration {
         return config;
     }
 
+    public File getFile() {
+        return file;
+    }
+
     public void saveConfig(){
         try {
             config.save(file);
