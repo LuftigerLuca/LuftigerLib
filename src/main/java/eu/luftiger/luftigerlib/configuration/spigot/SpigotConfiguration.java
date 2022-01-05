@@ -13,6 +13,12 @@ import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Objects;
 
+/**
+ * This abstract class is useful to create and manage {@link YamlConfiguration}
+ * @author LuftigerLuca
+ * @version 1.0
+ */
+
 public abstract class SpigotConfiguration {
 
     private final JavaPlugin plugin;
@@ -25,7 +31,6 @@ public abstract class SpigotConfiguration {
 
     /**
      * Creates or loads the yml file in the plugin directory.
-     *
      * @param name Is the name of the file
      */
     public void createDefaults(String name) {
@@ -54,18 +59,32 @@ public abstract class SpigotConfiguration {
         config = YamlConfiguration.loadConfiguration(file);
     }
 
+    /**
+     * @param path is the path of the String to convert
+     * @return colorcode converted String
+     */
     public String getConverted(String path){
         return ChatColor.translateAlternateColorCodes('&', Objects.requireNonNull(config.getString(path)));
     }
 
+    /**
+     * @return the used {@link YamlConfiguration}
+     */
     public YamlConfiguration getConfig() {
         return config;
     }
 
+    /**
+     *
+     * @return the used {@link File}
+     */
     public File getFile() {
         return file;
     }
 
+    /**
+     * saves the configuration
+     */
     public void saveConfig(){
         try {
             config.save(file);

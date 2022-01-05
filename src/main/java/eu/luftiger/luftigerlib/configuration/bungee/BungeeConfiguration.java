@@ -13,6 +13,11 @@ import java.nio.file.CopyOption;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 
+/**
+ * This class is useful to create and manage {@link Configuration}
+ * @author LuftigerLuca
+ * @version 1.0
+ */
 public abstract class BungeeConfiguration {
 
     private final Plugin plugin;
@@ -24,6 +29,10 @@ public abstract class BungeeConfiguration {
         this.plugin = plugin;
     }
 
+    /**
+     * Creates or loads the yml file in the plugin directory.
+     * @param name Is the name of the file
+     */
     public void createDefaults(String name) {
         if (!plugin.getDataFolder().exists()) {
             plugin.getDataFolder().mkdir();
@@ -51,22 +60,38 @@ public abstract class BungeeConfiguration {
         }
     }
 
+    /**
+     * @param path is the path of the String to convert
+     * @return colorcode converted String
+     */
     public String getConverted(String path){
         return ChatColor.translateAlternateColorCodes('&', configuration.getString(path));
     }
 
+    /**
+     * @return the used {@link Configuration}
+     */
     public Configuration getConfiguration() {
         return configuration;
     }
 
+    /**
+     * @return the used {@link ConfigurationProvider}
+     */
     public ConfigurationProvider getConfigurationProvider() {
         return configurationProvider;
     }
 
+    /**
+     * @return the used {@link File}
+     */
     public File getFile() {
         return file;
     }
 
+    /**
+     * saves the configuration
+     */
     public void saveConfig(){
         try {
             configurationProvider.load(file);
