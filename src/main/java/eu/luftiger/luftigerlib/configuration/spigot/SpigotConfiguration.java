@@ -32,8 +32,10 @@ public abstract class SpigotConfiguration {
     /**
      * Creates or loads the yml file in the plugin directory.
      * @param name Is the name of the file
+     * @param copyDefault Should the default config be copied?
+     * @param updateConfig Should the config be updated?
      */
-    public void createDefaults(String name) {
+    public void createDefaults(String name, boolean copyDefault, boolean updateConfig) {
         if (!plugin.getDataFolder().exists()) {
             plugin.getDataFolder().mkdir();
         }
@@ -41,19 +43,30 @@ public abstract class SpigotConfiguration {
         this.file = new File(plugin.getDataFolder().getPath() + "/" + name);
 
         if (!file.exists()) {
-            InputStream inputStream = plugin.getResource(name);
-            try {
-                assert inputStream != null;
-                Files.copy(inputStream, Paths.get(plugin.getDataFolder().getPath() + "/" + name), new CopyOption[0]);
-            } catch (IOException e) {
-                e.printStackTrace();
+            if(copyDefault){
+                InputStream inputStream = plugin.getResource(name);
+                try {
+                    assert inputStream != null;
+                    Files.copy(inputStream, Paths.get(plugin.getDataFolder().getPath() + "/" + name), new CopyOption[0]);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+            else{
+                try {
+                    file.createNewFile();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
             }
         } else {
-            try {
-                ConfigUpdater.update(plugin, name, file, new ArrayList<>());
-            } catch (IOException e) {
-                e.printStackTrace();
+            if(updateConfig){
+                try {
+                    ConfigUpdater.update(plugin, name, file, new ArrayList<>());
+                } catch (IOException e) {
+                    e.printStackTrace();
 
+                }
             }
         }
         config = YamlConfiguration.loadConfiguration(file);
