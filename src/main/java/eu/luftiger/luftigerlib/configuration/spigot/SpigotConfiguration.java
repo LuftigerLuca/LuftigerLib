@@ -1,6 +1,6 @@
 package eu.luftiger.luftigerlib.configuration.spigot;
 
-import org.bukkit.ChatColor;
+import net.md_5.bungee.api.ChatColor;
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.plugin.java.JavaPlugin;
 
@@ -12,6 +12,8 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Objects;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 /**
  * This abstract class is useful to create and manage {@link YamlConfiguration}
@@ -77,7 +79,21 @@ public abstract class SpigotConfiguration {
      * @return colorcode converted String
      */
     public String getConverted(String path){
-        return ChatColor.translateAlternateColorCodes('&', Objects.requireNonNull(config.getString(path)));
+        return ChatColor.translateAlternateColorCodes('&', Objects.requireNonNull(translateHEXCodes(config.getString(path))));
+    }
+
+    /**
+     *
+     * @param string is the string in which the hexcodes are to be translated
+     * @return hexxcode converted String
+     */
+    public String translateHEXCodes(String string){
+        Matcher matcher = Pattern.compile("<.*?>").matcher(string);
+        while (matcher.find()) {
+            String replace = matcher.group();
+            string = string.replace(replace, ChatColor.of(replace.replace("<", "").replace(">", "")) + "");
+        }
+        return string;
     }
 
     /**
