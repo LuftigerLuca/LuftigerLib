@@ -53,6 +53,11 @@ public abstract class SpigotConfiguration {
             plugin.getDataFolder().mkdir();
         }
 
+        File folder = new File(path);
+        if(!folder.exists()){
+            folder.mkdir();
+        }
+
         this.file = new File(path + "/" + name);
 
         if (!file.exists()) {
