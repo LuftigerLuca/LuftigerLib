@@ -49,10 +49,6 @@ public abstract class SpigotConfiguration {
      * @param path Is the path of the file
      */
     public void createDefaults(String name, boolean copyDefault, boolean updateConfig, String path) {
-        if (!plugin.getDataFolder().exists()) {
-            plugin.getDataFolder().mkdir();
-        }
-
         File folder = new File(path);
         if(!folder.exists()){
             folder.mkdir();
