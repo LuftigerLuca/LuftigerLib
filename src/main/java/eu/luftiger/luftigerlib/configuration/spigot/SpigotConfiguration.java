@@ -18,7 +18,7 @@ import java.util.regex.Pattern;
 /**
  * This abstract class is useful to create and manage {@link YamlConfiguration}
  * @author LuftigerLuca
- * @version 1.0
+ * @version 1.2
  */
 
 public abstract class SpigotConfiguration {
@@ -38,11 +38,22 @@ public abstract class SpigotConfiguration {
      * @param updateConfig Should the config be updated?
      */
     public void createDefaults(String name, boolean copyDefault, boolean updateConfig) {
+        createDefaults(name, copyDefault, updateConfig, plugin.getDataFolder().getPath());
+    }
+
+    /**
+     * Creates or loads the yml file in the plugin directory.
+     * @param name Is the name of the file
+     * @param copyDefault Should the default config be copied?
+     * @param updateConfig Should the config be updated?
+     * @param path Is the path of the file
+     */
+    public void createDefaults(String name, boolean copyDefault, boolean updateConfig, String path) {
         if (!plugin.getDataFolder().exists()) {
             plugin.getDataFolder().mkdir();
         }
 
-        this.file = new File(plugin.getDataFolder().getPath() + "/" + name);
+        this.file = new File(path + "/" + name);
 
         if (!file.exists()) {
             if(copyDefault){

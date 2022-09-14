@@ -1,0 +1,6 @@
+eu\luftiger\luftigerlib\configuration\spigot\ConfigUpdater.class
+eu\luftiger\luftigerlib\configuration\bungee\BungeeCommunicationHandler.class
+eu\luftiger\luftigerlib\configuration\spigot\SpigotConfiguration.class
+eu\luftiger\luftigerlib\versioning\spigot\VersionMatcher.class
+eu\luftiger\luftigerlib\configuration\bungee\BungeeConfiguration.class
+eu\luftiger\luftigerlib\configuration\spigot\SpigotCommunicationHandler.class
